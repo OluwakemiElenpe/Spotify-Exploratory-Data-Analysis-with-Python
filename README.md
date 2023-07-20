@@ -1,4 +1,4 @@
-# Exploratory Data Analysis with Python
+# Exploratory Data Analysis of Spotify dataset with Python
 
 ## Introduction
 This is an exploratory data analysis of Spotify dataset. The dataset comprises of songs published on the platform from 1922 to 2021. The two datasets used for the demo are gotten from kaggle.com and are classified as [Spotify tracks](https://www.kaggle.com/datasets/zaheenhamidani/ultimate-spotify-tracks-db) (features of tracks) and [Soptify datasets](https://www.kaggle.com/datasets/lehaknarnauli/spotify-datasets) (classification by Genre).
@@ -72,6 +72,9 @@ spotify_tracks.duration.head()
 
 ![](ms_to_s.JPG)
 
+
+### Correlation
+
 The first visualization is the correlation heat map, pearson correlation was used to draw three unmounted columns between key mode and explicit setting the figure size at (14,6).
 
 corr_df = df_tracks.drop(['key', 'mode', 'explicit'], axis = 1).corr(method="pearson")
@@ -104,17 +107,23 @@ year = spotify_tracks['release_date'].dt.year
 we now plot the histogram 
 sns.displot(years, discrete=True, aspect=2,height=5, kind="hist").set(title="Number of songs per year")
 
+![](Histogram.JPG)
 
 In the 1920s there are limited number of songs, the number increased exponencially towards the beginning of 2000
-We will now see the duration of songs over years usuing bar plot
+
+### Duration of song
+The duration of songs over years was shown using bar plot using the code below:
+
 total_duration = df_tracks.duration
 fig_dims = (18,7)
 fig, ax = plt.subplots(figsize=fig_dims)
 fig = sns.barplot(x=years, y=total_duration , ax = ax, errwidth = False).set(title = 'Year Vs duration')
 plt.xticks(rotation = 90)
 
+![](duration.JPG)
 
-A line plot can also be used to see the relationship between the duration of songs and year released using the code
+A line plot was also used to see the relationship between the duration of songs and year released using the code below:
+
 total_duration = df_tracks.iduration
 sns.set_style(style="whitegrid")
 fig_dims = (10,5)
